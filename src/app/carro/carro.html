@@ -1,52 +1,125 @@
-<div class="container">
-  <h2>Controle de Abastecimento</h2>
+<div class="max-w-3xl mx-auto mt-8 space-y-6">
 
-  <form>
-    <!-- Modelo -->
-    <label>Modelo:</label>
-    <input type="text" [(ngModel)]="modelo" id="modelo">
+  <!-- Card Formulário -->
+  <div class="bg-white shadow-lg rounded-lg p-6 space-y-4">
+    <h2 class="text-xl font-bold text-gray-700">
+      Controle de Abastecimento
+    </h2>
 
-    <!-- Marca -->
-    <label>Marca:</label>
-    <select [(ngModel)]="marca" name="marca">
-      <option value="">Selecione</option>
-      <option value="Fiat">Fiat</option>
-      <option value="Ford">Ford</option>
-      <option value="Volkswagen">Volkswagen</option>
-      <option value="Chevrolet">Chevrolet</option>
-    </select>
+    <form class="grid grid-cols-1 md:grid-cols-2 gap-4">
 
-    <label>Quilometragem anterior:</label>
-    <input type="number" [(ngModel)]="kmAnterior" name="kmAnterior">
+      <!-- Modelo -->
+      <div class="flex flex-col">
+        <label class="text-sm font-semibold text-gray-600">Modelo</label>
+        <input 
+          type="text"
+          [(ngModel)]="modelo"
+          name="modelo"
+          class="border rounded-md p-2 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-400"
+        >
+      </div>
 
-    <label>Preço por litro:</label>
-    <input type="number" step="0.01" [(ngModel)]="precoLitro" name="precoLitro">
+      <!-- Marca -->
+      <div class="flex flex-col">
+        <label class="text-sm font-semibold text-gray-600">Marca</label>
+        <select 
+          [(ngModel)]="marca"
+          name="marca"
+          class="border rounded-md p-2 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-400"
+        >
+          <option value="">Selecione</option>
+          <option value="Fiat">Fiat</option>
+          <option value="Ford">Ford</option>
+          <option value="Volkswagen">Volkswagen</option>
+          <option value="Chevrolet">Chevrolet</option>
+        </select>
+      </div>
 
-    <label>Valor total abastecido:</label>
-    <input type="number" step="0.01" [(ngModel)]="valorTotal" name="valorTotal">
+      <!-- Km anterior -->
+      <div class="flex flex-col">
+        <label class="text-sm font-semibold text-gray-600">Km anterior</label>
+        <input 
+          type="number"
+          [(ngModel)]="kmAnterior"
+          name="kmAnterior"
+          class="border rounded-md p-2 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-400"
+        >
+      </div>
 
-    <label>Quilometragem atual:</label>
-    <input type="number" [(ngModel)]="kmAtual" name="kmAtual">
-  </form>
+      <!-- Km atual -->
+      <div class="flex flex-col">
+        <label class="text-sm font-semibold text-gray-600">Km atual</label>
+        <input 
+          type="number"
+          [(ngModel)]="kmAtual"
+          name="kmAtual"
+          class="border rounded-md p-2 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-400"
+        >
+      </div>
 
-  <hr>
+      <!-- Preço por litro -->
+      <div class="flex flex-col">
+        <label class="text-sm font-semibold text-gray-600">Preço por litro (R$)</label>
+        <input 
+          type="number"
+          step="0.01"
+          [(ngModel)]="precoLitro"
+          name="precoLitro"
+          class="border rounded-md p-2 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-400"
+        >
+      </div>
 
-  <h3>Resultado</h3>
+      <!-- Valor total -->
+      <div class="flex flex-col">
+        <label class="text-sm font-semibold text-gray-600">Valor total (R$)</label>
+        <input 
+          type="number"
+          step="0.01"
+          [(ngModel)]="valorTotal"
+          name="valorTotal"
+          class="border rounded-md p-2 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-400"
+        >
+      </div>
 
-  <p><strong>Modelo:</strong> {{ modelo }}</p>
-  <p><strong>Marca:</strong> {{ marca }}</p>
+    </form>
+  </div>
 
-  <p><strong>Km anterior:</strong> {{ kmAnterior }}</p>
-  <p><strong>Km atual:</strong> {{ kmAtual }}</p>
+  <!-- Card Resultado -->
+  <div class="bg-white shadow-lg rounded-lg p-6 space-y-3">
+    <h3 class="text-lg font-semibold text-gray-700">
+      Resultado
+    </h3>
 
-  <p><strong>Preço por litro:</strong> R$ {{ precoLitro }}</p>
-  <p><strong>Valor total:</strong> R$ {{ valorTotal }}</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-gray-600">
+      <p><strong>Modelo:</strong> {{ modelo }}</p>
+      <p><strong>Marca:</strong> {{ marca }}</p>
 
-  <hr>
+      <p><strong>Km anterior:</strong> {{ kmAnterior }}</p>
+      <p><strong>Km atual:</strong> {{ kmAtual }}</p>
 
-  <p><strong>Litros abastecidos:</strong> {{ litros }}</p>
+      <p><strong>Preço por litro:</strong> R$ {{ precoLitro }}</p>
+      <p><strong>Valor total:</strong> R$ {{ valorTotal }}</p>
+    </div>
 
-<p><strong>Km rodados:</strong> {{ kmRodados || 0 }}</p>
+    <hr class="my-3">
 
-<p><strong>Média (km/l):</strong> {{ media }}</p>
+    <div class="bg-gray-100 rounded-md p-4 grid grid-cols-1 md:grid-cols-3 gap-3 text-center">
+      <div>
+        <p class="text-sm text-gray-500">Litros abastecidos</p>
+        <p class="text-lg font-bold text-blue-600">{{ litros }}</p>
+      </div>
+
+      <div>
+        <p class="text-sm text-gray-500">Km rodados</p>
+        <p class="text-lg font-bold text-green-600">{{ kmRodados || 0 }}</p>
+      </div>
+
+      <div>
+        <p class="text-sm text-gray-500">Média (km/l)</p>
+        <p class="text-lg font-bold text-purple-600">{{ media }}</p>
+      </div>
+    </div>
+
+  </div>
+
 </div>

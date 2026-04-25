@@ -1,0 +1,23 @@
+<ul>
+    @if(clientes.length === 0){
+    <span>Nenhum cliente cadastrado</span>
+    } @else {
+
+
+    @for(cliente of clientes; track clientes){
+    <li>
+        <span>{{cliente}}</span>
+        <button class="text-yellow-500 cursor-pointer" (click)="preencherCamposParaEditar(cliente)"><i
+                class="fa-solid fa-pencil"></i></button>
+        <button class="text-red-800 cursor-pointer" (click)="apagar(cliente)"><i class="fa-solid fa-trash"></i></button>
+    </li>
+    }
+    }
+</ul>
+
+<div>
+    <label for="campo-nome">Nome</label>
+    <input id="campo-nome" type="text" class="border rounded-md ml-3" [(ngModel)]="nome">
+
+    <button class="bg-teal-300 rounded-sm border mr-2 " (click)="salvar()">Salvar</button>
+</div>

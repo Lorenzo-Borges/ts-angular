@@ -1,20 +1,47 @@
-<div>
-    <div>
-        <label for="area">área do imovel</label>
-        <input type="number" id="area" [(ngModel)]="area">
-    </div>
-    <div>
-        <label for="valor">Valor do imovel</label>
-        <input type="number" id="valor" [(ngModel)]="valor">
-    </div>
-    <div>
-        <button type="button" (click)="valorMetroQuadrado()">Mostra valor do metro quadrado</button>
-    </div>
+<div class="max-w-md mx-auto mt-8 bg-white shadow-lg rounded-lg p-6 space-y-5">
 
+    <div class="flex flex-col">
+      <label for="area" class="text-sm font-semibold text-gray-600">
+        Área do imóvel (m²)
+      </label>
+      <input 
+        type="number"
+        id="area"
+        [(ngModel)]="area"
+        class="border rounded-md p-2 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-400"
+        placeholder="Ex: 120"
+      >
+    </div>
+  
+    <div class="flex flex-col">
+      <label for="valor" class="text-sm font-semibold text-gray-600">
+        Valor do imóvel (R$)
+      </label>
+      <input 
+        type="number"
+        id="valor"
+        [(ngModel)]="valor"
+        class="border rounded-md p-2 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-400"
+        placeholder="Ex: 300000"
+      >
+    </div>
+  
+    <button 
+      type="button"
+      (click)="valorMetroQuadrado()"
+      class="w-full bg-green-500 text-white py-2 rounded-md hover:bg-green-600 transition">
+      Calcular valor do m²
+    </button>
+  
     @if (valorMetro !== null) {
-        <div>
-            <p>Valor metro quadrado</p>
-            <p>{{valorMetro}}</p>
-        </div>
+      <div class="bg-gray-100 rounded-md p-4 text-center">
+        <p class="text-sm text-gray-500">
+          Valor por metro quadrado
+        </p>
+        <p class="text-xl font-bold text-blue-600">
+          R$ {{valorMetro}}
+        </p>
+      </div>
     }
-</div>
+  
+  </div>

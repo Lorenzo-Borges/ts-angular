@@ -1,78 +1,123 @@
-<div class="min-h-screen bg-slate-100 p-6">
-    <div class="mx-auto max-w-3xl rounded-2xl bg-white p-6 shadow-lg">
-        <h1 class="mb-6 text-02xl font-bold text-slate-800">Formulário do Paciente</h1>
-
-        <div class="grid gap-6">
-            <div class=" grid gap-4 md:grid-cols-2">
-                <div>
-                    <label for="nome"
-                    class="mb-2 block text-sm font-medium text-slate-700">Nome</label>
-                    <input type="text" [(ngModel)]="nome" placeholder="Nome"
-                    id="nome" class="w-full rounded-xl border border-slate-300 px-4 py-3
-                    outline-nome transition focus:border-blue-500 focus:ring-2
-                    focus:ring-blue-200">
-                </div>
-                <div>
-                    <label for="sobrenome"
-                    class="mb-2 block text-sm font-medium text-slate-700">Sobrenome</label>
-                    <input type="text" [(ngModel)]="sobrenome" placeholder="Sobrenome"
-                    id="sobrenome" class="w-full rounded-xl border border-slate-300 px-4 py-3
-                    outline-nome transition focus:border-blue-500 focus:ring-2
-                    focus:ring-blue-200">
-                </div>
-            </div>
-
-            <div class="rounded-2xl bg-slate-50 p-4">
-                <p class="txet-sm font-medium text-slate-500">Nome completo</p>
-                <p class="mt-1 text-lg font-semibold text-slate-800">{{nomeCompleto.trim()  || "Preencha o nome"}}</p>
-            </div>
+<div class="bg-slate-100 min-h-screen p-6">
+    <div class="mx-auto max-w-3xl rounded-2xl bg-white p-6 shadow-lg space-y-6">
+  
+      <h1 class="text-2xl font-bold text-slate-800">
+        Formulário do Paciente
+      </h1>
+  
+      <!-- Nome -->
+      <div class="grid gap-4 md:grid-cols-2">
+        <div>
+          <label for="nome" class="mb-2 block text-sm font-medium text-slate-700">
+            Nome
+          </label>
+          <input type="text" [(ngModel)]="nome" id="nome"
+            placeholder="Nome"
+            class="w-full rounded-xl border border-slate-300 px-4 py-3 transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none">
         </div>
-
-        <div class="form-row form-row-idade">
-            <div class="form-group">
-                <label for="idade" class="form-label">Idade</label>
-                <input type="number" id="idade" [(ngModel)]="idade" placeholder="Digite a idade" class="form-input">
-            </div>
-            <div class="form-button-wrapper">
-                <button type="button" (click)="apresentarAnoNascimento()" class="btn btn-primary">Mostar ano de nascimento</button>
-            </div>
+  
+        <div>
+          <label for="sobrenome" class="mb-2 block text-sm font-medium text-slate-700">
+            Sobrenome
+          </label>
+          <input type="text" [(ngModel)]="sobrenome" id="sobrenome"
+            placeholder="Sobrenome"
+            class="w-full rounded-xl border border-slate-300 px-4 py-3 transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none">
         </div>
-
-        @if(anoNascimentoResultado !==null){
-            <div class="result-card result-card-ano-nascimento">
-                <p class="result-label">Ano de nascimento</p>
-                <p class="result-value">{{anoNascimentoResultado}}</p>
-            </div>
-        }
-
-        <div class="form-row from-row-two-columns">
-            <div class="form-group">
-                <label for="peso" class="form-label">Peso (Kg)</label>
-                <input type="number" id="peso" step="0.1" [(ngModel)]="peso" name="peso" placeholder="Ex.: 70" class="form-input">
-            </div>
-            <div class="form-group">
-                <label for="altura" class="form-label">Altura (m)</label>
-                <input type="number" id="altura" step="0.1" [(ngModel)]="altura" name="peso" placeholder="Ex.: 1.75" class="form-input">
-            </div>
+      </div>
+  
+      <!-- Nome completo -->
+      <div class="rounded-2xl bg-slate-50 p-4">
+        <p class="text-sm font-medium text-slate-500">
+          Nome completo
+        </p>
+        <p class="mt-1 text-lg font-semibold text-slate-800">
+          {{ nomeCompleto.trim() || "Preencha o nome" }}
+        </p>
+      </div>
+  
+      <!-- Idade -->
+      <div class="grid md:grid-cols-2 gap-4 items-end">
+        <div>
+          <label for="idade" class="mb-2 block text-sm font-medium text-slate-700">
+            Idade
+          </label>
+          <input type="number" id="idade" [(ngModel)]="idade"
+            placeholder="Digite a idade"
+            class="w-full rounded-xl border border-slate-300 px-4 py-3 transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none">
         </div>
-
-        <div class="form-actions">
-            <button type="button" class="btn btn-success" (click)="caucularImc()">Calcular o IMC</button>
-            <button type="button" class="btn btn-purple" (click)="apresentarStatus()">Apresentar Status</button>
+  
+        <button type="button"
+          (click)="apresentarAnoNascimento()"
+          class="h-[48px] rounded-xl bg-blue-500 text-white font-medium hover:bg-blue-600 transition">
+          Mostrar ano de nascimento
+        </button>
+      </div>
+  
+      @if(anoNascimentoResultado !== null){
+        <div class="rounded-xl bg-blue-50 p-4 text-center">
+          <p class="text-sm text-slate-500">Ano de nascimento</p>
+          <p class="text-lg font-bold text-blue-600">
+            {{ anoNascimentoResultado }}
+          </p>
         </div>
-
-            @if (imcResultado !== null) {
-                <div class="result-card result-card-imc">
-                    <p class="result-label">IMC</p>
-                    <p class="result-value">{{imcResultado.toFixed(2).replace(".", ",")}}</p>
-                </div>
-            }
-            
-            @if (imcStatusResultado !== null) {
-                <div class="result-card result-card-status">
-                    <p class="result-label">Status</p>
-                    <p class="result-value">{{imcStatusResultado}}</p>
-                </div>
-            }
+      }
+  
+      <!-- Peso e Altura -->
+      <div class="grid md:grid-cols-2 gap-4">
+        <div>
+          <label for="peso" class="mb-2 block text-sm font-medium text-slate-700">
+            Peso (Kg)
+          </label>
+          <input type="number" id="peso" step="0.1" [(ngModel)]="peso"
+            placeholder="Ex.: 70"
+            class="w-full rounded-xl border border-slate-300 px-4 py-3 transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none">
+        </div>
+  
+        <div>
+          <label for="altura" class="mb-2 block text-sm font-medium text-slate-700">
+            Altura (m)
+          </label>
+          <input type="number" id="altura" step="0.1" [(ngModel)]="altura"
+            placeholder="Ex.: 1.75"
+            class="w-full rounded-xl border border-slate-300 px-4 py-3 transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none">
+        </div>
+      </div>
+  
+      <!-- Botões -->
+      <div class="flex flex-col md:flex-row gap-3">
+        <button type="button"
+          (click)="caucularImc()"
+          class="flex-1 rounded-xl bg-green-500 text-white py-3 font-medium hover:bg-green-600 transition">
+          Calcular IMC
+        </button>
+  
+        <button type="button"
+          (click)="apresentarStatus()"
+          class="flex-1 rounded-xl bg-purple-500 text-white py-3 font-medium hover:bg-purple-600 transition">
+          Apresentar Status
+        </button>
+      </div>
+  
+      <!-- Resultado IMC -->
+      @if (imcResultado !== null) {
+        <div class="rounded-xl bg-green-50 p-4 text-center">
+          <p class="text-sm text-slate-500">IMC</p>
+          <p class="text-lg font-bold text-green-600">
+            {{ imcResultado.toFixed(2).replace(".", ",") }}
+          </p>
+        </div>
+      }
+  
+      <!-- Status -->
+      @if (imcStatusResultado !== null) {
+        <div class="rounded-xl bg-purple-50 p-4 text-center">
+          <p class="text-sm text-slate-500">Status</p>
+          <p class="text-lg font-bold text-purple-600">
+            {{ imcStatusResultado }}
+          </p>
+        </div>
+      }
+  
     </div>
-</div>
+  </div>
