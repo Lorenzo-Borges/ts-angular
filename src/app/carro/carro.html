@@ -1,0 +1,52 @@
+<div class="container">
+  <h2>Controle de Abastecimento</h2>
+
+  <form>
+    <!-- Modelo -->
+    <label>Modelo:</label>
+    <input type="text" [(ngModel)]="modelo" id="modelo">
+
+    <!-- Marca -->
+    <label>Marca:</label>
+    <select [(ngModel)]="marca" name="marca">
+      <option value="">Selecione</option>
+      <option value="Fiat">Fiat</option>
+      <option value="Ford">Ford</option>
+      <option value="Volkswagen">Volkswagen</option>
+      <option value="Chevrolet">Chevrolet</option>
+    </select>
+
+    <label>Quilometragem anterior:</label>
+    <input type="number" [(ngModel)]="kmAnterior" name="kmAnterior">
+
+    <label>Preço por litro:</label>
+    <input type="number" step="0.01" [(ngModel)]="precoLitro" name="precoLitro">
+
+    <label>Valor total abastecido:</label>
+    <input type="number" step="0.01" [(ngModel)]="valorTotal" name="valorTotal">
+
+    <label>Quilometragem atual:</label>
+    <input type="number" [(ngModel)]="kmAtual" name="kmAtual">
+  </form>
+
+  <hr>
+
+  <h3>Resultado</h3>
+
+  <p><strong>Modelo:</strong> {{ modelo }}</p>
+  <p><strong>Marca:</strong> {{ marca }}</p>
+
+  <p><strong>Km anterior:</strong> {{ kmAnterior }}</p>
+  <p><strong>Km atual:</strong> {{ kmAtual }}</p>
+
+  <p><strong>Preço por litro:</strong> R$ {{ precoLitro }}</p>
+  <p><strong>Valor total:</strong> R$ {{ valorTotal }}</p>
+
+  <hr>
+
+  <p><strong>Litros abastecidos:</strong> {{ litros ? (litros | number:'1.2-2') : '0.00' }}</p>
+
+<p><strong>Km rodados:</strong> {{ kmRodados || 0 }}</p>
+
+<p><strong>Média (km/l):</strong> {{ media ? (media | number:'1.2-2') : '0.00' }}</p>
+</div>
